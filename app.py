@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 #โหลดโมเดลที่เทรนไว้
 model = tf.keras.models.load_model('model/best_model.h5')
-labels = ['crow', 'myna', 'sparrow']  #ปรับตาม Label ของคุณ
+labels = ['crow','koel','myna','sparrow']
 
 @app.route('/')
 def index():
@@ -17,7 +17,7 @@ def index():
 def predict():
     if 'file' not in request.files:
         return "No file uploaded!"
-
+    
     file = request.files['file']
     y, sr = librosa.load(file, sr=22050)
     mel = librosa.feature.melspectrogram(y=y, sr=sr)
